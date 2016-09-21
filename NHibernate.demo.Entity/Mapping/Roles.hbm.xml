@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"  encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="NHibernate.demo.Entity" namespace="NHibernate.demo.Entity">
+	<class name="NHibernate.demo.Entity.Roles, NHibernate.demo.Entity" table="Roles">
+		<id name="Id" column="Id" type="int" unsaved-value="0">
+      			<generator class="native" />       			
+      	</id>      		
+		<property name="Name" column="Name" type="string"  />
+		<property name="IsActive" column="IsActive" type="bool"  />
+		<property name="EntityId" column="EntityId" type="int"  />
+		<property name="ParentId" column="ParentId" type="int"  />
+				
+	</class>
+</hibernate-mapping>

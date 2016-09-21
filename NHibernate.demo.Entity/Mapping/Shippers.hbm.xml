@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"  encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="NHibernate.demo.Entity" namespace="NHibernate.demo.Entity">
+	<class name="NHibernate.demo.Entity.Shippers, NHibernate.demo.Entity" table="Shippers">
+		<id name="ShipperId" column="ShipperId" type="int" unsaved-value="0">
+      			      			
+      	</id>      		
+		<property name="CompanyName" column="CompanyName" type="string"  />
+		<property name="Phone" column="Phone" type="string"  />
+		<property name="Reference" column="Reference" type="Guid"  />
+				
+	</class>
+</hibernate-mapping>

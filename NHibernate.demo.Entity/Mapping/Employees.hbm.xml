@@ -1,0 +1,24 @@
+﻿<?xml version="1.0"  encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="NHibernate.demo.Entity" namespace="NHibernate.demo.Entity">
+	<class name="NHibernate.demo.Entity.Employees, NHibernate.demo.Entity" table="Employees">
+		<id name="EmployeeId" column="EmployeeId" type="int" unsaved-value="0">
+      			      			
+      	</id>      		
+		<property name="LastName" column="LastName" type="string"  />
+		<property name="FirstName" column="FirstName" type="string"  />
+		<property name="Title" column="Title" type="string"  />
+		<property name="TitleOfCourtesy" column="TitleOfCourtesy" type="string"  />
+		<property name="BirthDate" column="BirthDate" type="DateTime"  />
+		<property name="HireDate" column="HireDate" type="DateTime"  />
+		<property name="Address" column="Address" type="string"  />
+		<property name="City" column="City" type="string"  />
+		<property name="Region" column="Region" type="string"  />
+		<property name="PostalCode" column="PostalCode" type="string"  />
+		<property name="Country" column="Country" type="string"  />
+		<property name="HomePhone" column="HomePhone" type="string"  />
+		<property name="Extension" column="Extension" type="string"  />
+		<property name="Notes" column="Notes" type="string"  />
+		<property name="ReportsTo" column="ReportsTo" type="int"  />
+				
+	</class>
+</hibernate-mapping>

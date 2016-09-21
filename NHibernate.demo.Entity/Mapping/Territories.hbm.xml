@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"  encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="NHibernate.demo.Entity" namespace="NHibernate.demo.Entity">
+	<class name="NHibernate.demo.Entity.Territories, NHibernate.demo.Entity" table="Territories">
+		<id name="TerritoryId" column="TerritoryId" type="long" unsaved-value="0">
+      			<generator class="native" />       			
+      	</id>      		
+		<property name="TerritoryDescription" column="TerritoryDescription" type="string"  />
+		<property name="RegionId" column="RegionId" type="long"  />
+				
+	</class>
+</hibernate-mapping>

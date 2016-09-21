@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4CD87689-7CB3-4B0C-9DB9-117176B18B8E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NHibernate.demo.Entity</RootNamespace>
+    <AssemblyName>NHibernate.demo.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entity\Animal.cs" />
+    <Compile Include="Entity\AnotherEntity.cs" />
+    <Compile Include="Entity\Cat.cs" />
+    <Compile Include="Entity\Categories.cs" />
+    <Compile Include="Entity\Customers.cs" />
+    <Compile Include="Entity\Dog.cs" />
+    <Compile Include="Entity\Employees.cs" />
+    <Compile Include="Entity\EmployeeTerritories.cs" />
+    <Compile Include="Entity\Lizard.cs" />
+    <Compile Include="Entity\Mammal.cs" />
+    <Compile Include="Entity\OrderLines.cs" />
+    <Compile Include="Entity\Orders.cs" />
+    <Compile Include="Entity\PatientRecords.cs" />
+    <Compile Include="Entity\Patients.cs" />
+    <Compile Include="Entity\Physicians.cs" />
+    <Compile Include="Entity\Products.cs" />
+    <Compile Include="Entity\Region.cs" />
+    <Compile Include="Entity\Reptile.cs" />
+    <Compile Include="Entity\Roles.cs" />
+    <Compile Include="Entity\Shippers.cs" />
+    <Compile Include="Entity\States.cs" />
+    <Compile Include="Entity\Suppliers.cs" />
+    <Compile Include="Entity\Territories.cs" />
+    <Compile Include="Entity\TimesheetEntries.cs" />
+    <Compile Include="Entity\Timesheets.cs" />
+    <Compile Include="Entity\TimeSheetUsers.cs" />
+    <Compile Include="Entity\Users.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mapping\Animal.hbm.xml" />
+    <EmbeddedResource Include="Mapping\AnotherEntity.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Cat.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Categories.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Customers.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Dog.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Employees.hbm.xml" />
+    <Content Include="Mapping\EmployeeTerritories.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Lizard.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Mammal.hbm.xml" />
+    <EmbeddedResource Include="Mapping\OrderLines.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Orders.hbm.xml" />
+    <EmbeddedResource Include="Mapping\PatientRecords.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Patients.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Physicians.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Products.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Region.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Reptile.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Roles.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Shippers.hbm.xml" />
+    <EmbeddedResource Include="Mapping\States.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Suppliers.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Territories.hbm.xml" />
+    <EmbeddedResource Include="Mapping\TimesheetEntries.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Timesheets.hbm.xml" />
+    <Content Include="Mapping\TimeSheetUsers.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Users.hbm.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

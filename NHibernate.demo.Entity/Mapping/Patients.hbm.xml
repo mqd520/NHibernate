@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"  encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="NHibernate.demo.Entity" namespace="NHibernate.demo.Entity">
+	<class name="NHibernate.demo.Entity.Patients, NHibernate.demo.Entity" table="Patients">
+		<id name="PatientId" column="PatientId" type="long" unsaved-value="0">
+      			<generator class="native" />       			
+      	</id>      		
+		<property name="Active" column="Active" type="bool"  />
+		<property name="PhysicianId" column="PhysicianId" type="long"  />
+				
+	</class>
+</hibernate-mapping>
