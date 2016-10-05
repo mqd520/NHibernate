@@ -37,18 +37,22 @@ namespace NHibernate.demo
         private void button3_Click(object sender, EventArgs e)
         {
             ISession session = NHibernateHelper.CreateSession();
-            var result = (from order in session.Query<Customers>()
-                          select order).ToList<Customers>();
-            Tool.FillListView<Customers>(result, listView1);
+            IQueryable<Customers> query = from c in session.Query<Customers>()
+                                          where c.CustomerId == "ANATR"
+                                          select c;
+            IList<Customers> list = query.ToList<Customers>();
+            Tool.FillListView(list, listView1);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             ISession session = NHibernateHelper.CreateSession();
-            var result = from orders in session.Query<Orders>()
-                         join customer in session.Query<Customers>() on orders.CustomerId equals customer.CustomerId
-                         select orders;
-            var list = result.ToList<Orders>();
+            IQueryable<Orders> query = from o in session.Query<Orders>()
+                                       join c in session.Query<Customers>() on o.CustomerId equals c.CustomerId
+                                       where c.CustomerId == "ALFKI" || c.CustomerId == "ANATR"
+                                       orderby o.CustomerId
+                                       select o;
+            IList<Orders> list = query.ToList<Orders>();
             Tool.FillListView<Orders>(list, listView1);
         }
 
@@ -68,11 +72,10 @@ namespace NHibernate.demo
         private void button7_Click(object sender, EventArgs e)
         {
             ISession session = NHibernateHelper.CreateSession();
-            var query = from o in session.Query<Orders>()
-                        where o.CustomerId == "ALFKI"
-                        select o;
+            IQueryable<Orders> query = from o in session.Query<Orders>()
+                                       select o;
             query = query.Skip((1 - 1) * 10).Take(10);
-            var list = query.ToList();
+            IList<Orders> list = query.ToList();
             Tool.FillListView(list, listView1);
         }
 
@@ -127,6 +130,37 @@ namespace NHibernate.demo
                 });
             }
             Tool.FillListView(list1, listView1);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.CreateQuery("from Customers c where c.CustomerId=?").SetString(0, "ANATR");
+            IList<Customers> list = query.List<Customers>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.CreateQuery("from Customers c where c.CustomerId=:para1").SetString("para1", "BOLID");
+            IList<Customers> list = query.List<Customers>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Customers> query = from c in session.Query<Customers>()
+                                          join o in session.Query<Orders>() on c.CustomerId equals o.CustomerId into orders
+                                          select c;
+            IList<Customers> list = query.ToList();
+            Tool.FillListView(list, listView1);
         }
     }
 }

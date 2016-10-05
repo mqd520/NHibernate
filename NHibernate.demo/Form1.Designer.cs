@@ -38,6 +38,9 @@
             this.button7 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -45,6 +48,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button15 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -97,9 +101,9 @@
             // 
             this.button4.Location = new System.Drawing.Point(189, 6);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(85, 23);
             this.button4.TabIndex = 4;
-            this.button4.Text = "连接查询";
+            this.button4.Text = "inner join";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -147,6 +151,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button14);
+            this.tabPage1.Controls.Add(this.button13);
+            this.tabPage1.Controls.Add(this.button12);
             this.tabPage1.Controls.Add(this.button11);
             this.tabPage1.Controls.Add(this.button10);
             this.tabPage1.Controls.Add(this.button9);
@@ -160,6 +167,36 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "HQL";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(279, 35);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(86, 23);
+            this.button14.TabIndex = 12;
+            this.button14.Text = "参数化查询";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(188, 35);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(85, 23);
+            this.button13.TabIndex = 11;
+            this.button13.Text = "参数化查询";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(343, 6);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 10;
+            this.button12.Text = "统计函数";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button11
             // 
@@ -203,6 +240,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button15);
             this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.button7);
             this.tabPage2.Controls.Add(this.button4);
@@ -233,6 +271,16 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "SQL";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(280, 6);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.TabIndex = 8;
+            this.button15.Text = "left join";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // Form1
             // 
@@ -272,6 +320,10 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
     }
 }
 
