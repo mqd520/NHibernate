@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,7 +31,8 @@ namespace NHibernate.demo
         private void button2_Click(object sender, EventArgs e)
         {
             ISession session = NHibernateHelper.CreateSession();
-            var list = session.CreateSQLQuery("select * from Orders").AddEntity(typeof(Orders)).List<Orders>();
+            ISQLQuery query = session.CreateSQLQuery("select * from Orders").AddEntity(typeof(Orders));
+            var list = query.List<Orders>();
             Tool.FillListView<Orders>(list, listView1);
         }
 
@@ -38,7 +40,6 @@ namespace NHibernate.demo
         {
             ISession session = NHibernateHelper.CreateSession();
             IQueryable<Customers> query = from c in session.Query<Customers>()
-                                          where c.CustomerId == "ANATR"
                                           select c;
             IList<Customers> list = query.ToList<Customers>();
             Tool.FillListView(list, listView1);
@@ -49,8 +50,6 @@ namespace NHibernate.demo
             ISession session = NHibernateHelper.CreateSession();
             IQueryable<Orders> query = from o in session.Query<Orders>()
                                        join c in session.Query<Customers>() on o.CustomerId equals c.CustomerId
-                                       where c.CustomerId == "ALFKI" || c.CustomerId == "ANATR"
-                                       orderby o.CustomerId
                                        select o;
             IList<Orders> list = query.ToList<Orders>();
             Tool.FillListView<Orders>(list, listView1);
@@ -66,15 +65,22 @@ namespace NHibernate.demo
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.CreateSQLQuery("select * from Orders where OrderId=:OrderId").SetInt32("OrderId", 10248);
+            ISQLQuery query1 = (ISQLQuery)query;
+            query1 = query1.AddEntity(typeof(Orders));
+            var list = query.List<Orders>();
+            Tool.FillListView<Orders>(list, listView1);
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
+            int index = 1;
+            int size = 10;
             ISession session = NHibernateHelper.CreateSession();
             IQueryable<Orders> query = from o in session.Query<Orders>()
                                        select o;
-            query = query.Skip((1 - 1) * 10).Take(10);
+            query = query.Skip((index - 1) * size).Take(size);
             IList<Orders> list = query.ToList();
             Tool.FillListView(list, listView1);
         }
@@ -82,7 +88,7 @@ namespace NHibernate.demo
         private void button8_Click(object sender, EventArgs e)
         {
             ISession session = NHibernateHelper.CreateSession();
-            IQuery query = session.CreateQuery("from Customers c where c.CustomerID='ANATR'");
+            IQuery query = session.CreateQuery("from Customers c where c.CustomerId='ANATR'");
             IList<Customers> list = query.List<Customers>();
             Tool.FillListView(list, listView1);
             // 数学操作符：+, -, *, /
@@ -160,6 +166,358 @@ namespace NHibernate.demo
                                           join o in session.Query<Orders>() on c.CustomerId equals o.CustomerId into orders
                                           select c;
             IList<Customers> list = query.ToList();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Customers> query = from c in session.Query<Customers>()
+                                          orderby c.CustomerId
+                                          select c;
+            IList<Customers> list = query.ToList<Customers>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Customers> query = from c in session.Query<Customers>()
+                                          select c;
+            //只能通过方法语法，不能通过查询语法
+            query = query.OrderByDescending(c => c.CustomerId);
+            IList<Customers> list = query.ToList<Customers>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Customers> query = from c in session.Query<Customers>()
+                                          orderby c.CustomerId
+                                          select c;
+            query = query.OrderBy(c => c.ContactName);
+
+            IList<Customers> list = query.ToList<Customers>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession(s => Console.WriteLine(s));
+            IQueryable<Customers> query = from c in session.Query<Customers>()
+                                          select c;
+            query = query.OrderBy(c => c.CustomerId).ThenByDescending(c => c.ContactName);
+            IList<Customers> list = query.ToList<Customers>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button19_Click_1(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession(s => Console.WriteLine(s));
+            var list = session.CreateQuery("from Employees").List<Employees>();
+            Tool.FillListView<Employees>(list, listView1);
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Customers> query = from c in session.Query<Customers>()
+                                          where c.CustomerId == "ALFKI"
+                                          select c;
+            IList<Customers> list = query.ToList<Customers>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Customers> query = from c in session.Query<Customers>()
+                                          where c.CustomerId == "ALFKI" || c.CustomerId == "ANATR"
+                                          select c;
+            IList<Customers> list = query.ToList<Customers>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Customers> query = from c in session.Query<Customers>()
+                                          where c.CustomerId == "ALFKI" && c.ContactTitle == "Owner"
+                                          select c;
+            IList<Customers> list = query.ToList<Customers>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button24_Click(object sender, EventArgs e1)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Employees> query = from e in session.Query<Employees>()
+                                          where e.EmployeeId > 1
+                                          select e;
+            IList<Employees> list = query.ToList<Employees>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button25_Click(object sender, EventArgs e1)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Employees> query = from e in session.Query<Employees>()
+                                          where e.EmployeeId < 3
+                                          select e;
+            IList<Employees> list = query.ToList<Employees>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button26_Click(object sender, EventArgs e1)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Employees> query = from e in session.Query<Employees>()
+                                          where e.BirthDate > DateTime.Now
+                                          select e;
+            IList<Employees> list = query.ToList<Employees>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button15_Click_1(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Orders> query = from o in session.Query<Orders>()
+                                       join c in session.Query<Customers>()
+                                            on new { p1 = o.CustomerId, p2 = o.ShipAddress } equals new { p1 = c.ContactTitle, p2 = c.ContactName }
+                                       select o;
+            IList<Orders> list = query.ToList<Orders>();
+            Tool.FillListView<Orders>(list, listView1);
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQueryable<Employees> query = from c in session.Query<Customers>()
+                                          select new Employees
+                                          {
+                                              Address = c.ContactName
+                                          };
+            IList<Employees> list = query.ToList<Employees>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            var query = from c in session.Query<Customers>()
+                        select new
+                        {
+                            Address = c.ContactName
+                        };
+            var list = query.ToList();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button29_Click(object sender, EventArgs e1)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            var query = from e in session.Query<Employees>()
+                        select new Employees
+                        {
+                            EmployeeId = (
+                                       from o in session.Query<Orders>()
+                                       where o.EmployeeId == e.EmployeeId
+                                       select o.OrderId
+                                     ).Sum()
+                        };
+            var list = query.ToList();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button30_Click(object sender, EventArgs e1)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            var query = from e in session.Query<Employees>()
+                        select new Employees
+                        {
+                            EmployeeId = (
+                                       from o in session.Query<Orders>()
+                                       where o.EmployeeId == e.EmployeeId
+                                       select o.OrderId
+                                     ).Sum(),
+                            Address = (
+                                       from o in session.Query<Orders>()
+                                       where o.EmployeeId == e.EmployeeId
+                                       select o.OrderId
+                                     ).Count().ToString(),
+                            City = (
+                                      from o in session.Query<Orders>()
+                                      where o.EmployeeId == e.EmployeeId
+                                      select o.OrderId
+                                    ).FirstOrDefault().ToString(),
+                            HomePhone = (
+                                            from o in session.Query<Orders>()
+                                            where o.EmployeeId == e.EmployeeId
+                                            select o.OrderId
+                                        ).Max().ToString(),
+                            Country = (
+                                      from o in session.Query<Orders>()
+                                      where o.EmployeeId == e.EmployeeId
+                                      select o.OrderId
+                                    ).Min().ToString(),
+                            Region = (
+                                     from o in session.Query<Orders>()
+                                     where o.EmployeeId == e.EmployeeId
+                                     select o.OrderId
+                            ).Average().ToString()
+                        };
+            var list = query.ToList();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.CreateSQLQuery("select * from Orders where OrderId=?").SetInt32(0, 10248);
+            ISQLQuery query1 = (ISQLQuery)query;
+            query1 = query1.AddEntity(typeof(Orders));
+            var list = query.List<Orders>();
+            Tool.FillListView<Orders>(list, listView1);
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            string sql = @"
+                INSERT INTO dbo.Animal
+                        ( 
+                          body_weight ,
+                          SerialNumber 
+                        )
+                VALUES  ( 
+                          101.0 , 
+                          45678  
+                        )
+            ";
+            ISQLQuery query = session.CreateSQLQuery(sql);
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button33_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            string sql = @"
+                INSERT INTO dbo.Animal
+                        ( 
+                          body_weight ,
+                          SerialNumber 
+                        )
+                VALUES  ( 
+                          ? , 
+                          ?  
+                        )
+            ";
+            IQuery query = session.CreateSQLQuery(sql).SetDouble(0, 111.1).SetInt32(1, 23);
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button34_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            string sql = "UPDATE dbo.Animal SET body_weight=333.3 WHERE Id=10";
+            ISQLQuery query = session.CreateSQLQuery(sql);
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button35_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            string sql = "UPDATE dbo.Animal SET body_weight=? WHERE Id=10";
+            IQuery query = session.CreateSQLQuery(sql).SetDouble(0, 444.4);
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button36_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            string sql = "DELETE FROM dbo.Animal WHERE id=9";
+            ISQLQuery query = session.CreateSQLQuery(sql);
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button37_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            string sql = "DELETE FROM dbo.Animal WHERE id=?";
+            IQuery query = session.CreateSQLQuery(sql).SetInt32(0, 8);
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button38_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.GetNamedQuery("query1");
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button39_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.GetNamedQuery("query2").SetInt32(0, 10);
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button40_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.GetNamedQuery("query3").SetInt32("id", 7);
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button41_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.GetNamedQuery("query4").SetInt32("id", -1);
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button42_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.GetNamedQuery("query5").SetString("serail", "0000");
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button44_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.GetNamedQuery("query6").SetInt32("return", -1);
+            int n = query.ExecuteUpdate();
+            MessageBox.Show(n.ToString());
+        }
+
+        private void button45_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.GetNamedQuery("query7");
+            ISQLQuery query1 = (ISQLQuery)query;
+            IList<Animal> list = query1.List<Animal>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button46_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IQuery query = session.GetNamedQuery("query8");
+            ISQLQuery query1 = (ISQLQuery)query;
+            IList<Entity.View.Class1> list = query1.List<Entity.View.Class1>();
             Tool.FillListView(list, listView1);
         }
     }
