@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.demo", "NHibernate.demo\NHibernate.demo.csproj", "{AFEDFE5E-B705-4223-9D89-FD3B26C012B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.demo.Entity", "NHibernate.demo.Entity\NHibernate.demo.Entity.csproj", "{4CD87689-7CB3-4B0C-9DB9-117176B18B8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate.demo.Mapping", "NHibernate.demo.Mapping\NHibernate.demo.Mapping.csproj", "{6AC2EF9F-66A9-4969-98B2-97860EECDAB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4CD87689-7CB3-4B0C-9DB9-117176B18B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CD87689-7CB3-4B0C-9DB9-117176B18B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CD87689-7CB3-4B0C-9DB9-117176B18B8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AC2EF9F-66A9-4969-98B2-97860EECDAB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AC2EF9F-66A9-4969-98B2-97860EECDAB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AC2EF9F-66A9-4969-98B2-97860EECDAB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AC2EF9F-66A9-4969-98B2-97860EECDAB4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

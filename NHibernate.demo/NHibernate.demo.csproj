@@ -95,6 +95,10 @@
       <Project>{4cd87689-7cb3-4b0c-9db9-117176b18b8e}</Project>
       <Name>NHibernate.demo.Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\NHibernate.demo.Mapping\NHibernate.demo.Mapping.csproj">
+      <Project>{6ac2ef9f-66a9-4969-98b2-97860eecdab4}</Project>
+      <Name>NHibernate.demo.Mapping</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

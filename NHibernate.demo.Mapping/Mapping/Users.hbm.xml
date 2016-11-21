@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"  encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="NHibernate.demo.Entity.Users, NHibernate.demo.Entity" table="Users">
+		<id name="UserId" column="UserId" type="int" unsaved-value="0">
+      			<generator class="native" />       			
+      	</id>      		
+		<property name="Name" column="Name" type="string"  />
+		<property name="InvalidLoginAttempts" column="InvalidLoginAttempts" type="int"  />
+		<property name="RegisteredAt" column="RegisteredAt" type="DateTime"  />
+		<property name="LastLoginDate" column="LastLoginDate" type="DateTime"  />
+		<property name="Enum1" column="Enum1" type="string"  />
+		<property name="Enum2" column="Enum2" type="int"  />
+		<property name="Features" column="Features" type="int"  />
+		<property name="RoleId" column="RoleId" type="int"  />
+		<property name="Property1" column="Property1" type="string"  />
+		<property name="Property2" column="Property2" type="string"  />
+		<property name="OtherProperty1" column="OtherProperty1" type="string"  />
+				
+	</class>
+</hibernate-mapping>

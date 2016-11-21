@@ -13,6 +13,6 @@
     <property name="command_timeout">10</property>
     <property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
 
-    <mapping assembly="NHibernate.demo.Entity" />
+    <mapping assembly="NHibernate.demo.Mapping" />
   </session-factory>
 </hibernate-configuration>

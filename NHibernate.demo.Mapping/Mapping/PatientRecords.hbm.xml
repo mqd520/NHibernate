@@ -1,0 +1,19 @@
+﻿<?xml version="1.0"  encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="NHibernate.demo.Entity.PatientRecords, NHibernate.demo.Entity" table="PatientRecords">
+		<id name="PatientRecordId" column="PatientRecordId" type="long" unsaved-value="0">
+      			<generator class="native" />       			
+      	</id>      		
+		<property name="Gender" column="Gender" type="int"  />
+		<property name="BirthDate" column="BirthDate" type="DateTime"  />
+		<property name="FirstName" column="FirstName" type="string"  />
+		<property name="LastName" column="LastName" type="string"  />
+		<property name="AddressLine1" column="AddressLine1" type="string"  />
+		<property name="AddressLine2" column="AddressLine2" type="string"  />
+		<property name="City" column="City" type="string"  />
+		<property name="StateId" column="StateId" type="long"  />
+		<property name="ZipCode" column="ZipCode" type="string"  />
+		<property name="PatientId" column="PatientId" type="long"  />
+				
+	</class>
+</hibernate-mapping>

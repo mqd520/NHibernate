@@ -1,0 +1,9 @@
+﻿<?xml version="1.0"  encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="NHibernate.demo.Entity.View.Class1, NHibernate.demo.Entity" table="Animal">
+		<id name="Id1" column="Id" type="int" unsaved-value="0">
+      			<generator class="native" />       			
+      	</id>      		
+		<property name="SerialNumber1" column="SerialNumber" type="string"  />
+	</class>
+</hibernate-mapping>

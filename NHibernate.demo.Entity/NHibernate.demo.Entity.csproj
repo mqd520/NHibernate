@@ -69,39 +69,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\Class1.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="View\Class1.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Animal.hbm.xml" />
-    <EmbeddedResource Include="Mapping\AnotherEntity.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Cat.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Categories.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Customers.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Dog.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Employees.hbm.xml" />
-    <EmbeddedResource Include="BusinessMapping\Business1.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Content Include="Mapping\EmployeeTerritories.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Lizard.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Mammal.hbm.xml" />
-    <EmbeddedResource Include="Mapping\OrderLines.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Orders.hbm.xml" />
-    <EmbeddedResource Include="Mapping\PatientRecords.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Patients.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Physicians.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Products.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Region.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Reptile.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Roles.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Shippers.hbm.xml" />
-    <EmbeddedResource Include="Mapping\States.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Suppliers.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Territories.hbm.xml" />
-    <EmbeddedResource Include="Mapping\TimesheetEntries.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Timesheets.hbm.xml" />
-    <Content Include="Mapping\TimeSheetUsers.hbm.xml" />
-    <EmbeddedResource Include="Mapping\Users.hbm.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

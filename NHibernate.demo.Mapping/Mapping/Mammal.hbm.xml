@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"  encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+	<class name="NHibernate.demo.Entity.Mammal, NHibernate.demo.Entity" table="Mammal">
+		<id name="Animal" column="Animal" type="int" unsaved-value="0">
+      			      			
+      	</id>      		
+		<property name="Pregnant" column="Pregnant" type="bool"  />
+		<property name="BirthDate" column="BirthDate" type="DateTime"  />
+				
+	</class>
+</hibernate-mapping>

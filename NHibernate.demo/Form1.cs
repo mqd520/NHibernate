@@ -520,5 +520,68 @@ namespace NHibernate.demo
             IList<Entity.View.Class1> list = query1.List<Entity.View.Class1>();
             Tool.FillListView(list, listView1);
         }
+
+        private void button47_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            Animal entity = new Animal
+            {
+                Description = "Description"
+            };
+            session.Save(entity);
+        }
+
+        private void button48_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            Animal entity = session.Get<Animal>(1);
+            entity.Description = "dsdfsfg345gegfg";
+            session.Update(entity);
+            session.Flush();
+        }
+
+        private void button49_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession(s => Console.WriteLine(s));
+            Animal entity = session.Get<Animal>(1007);
+            session.Delete(entity);
+            session.Flush();
+        }
+
+        private void button50_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            Animal entity = new Animal
+            {
+                Id = 1008
+            };
+            session.Delete(entity);
+            session.Flush();
+        }
+
+        private void button51_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            Animal entity1 = new Animal
+            {
+                Id = 15,
+                Description ="sddddddddddddddddd"
+            };
+            Animal entity2 = new Animal
+            {
+                Id = 16,
+                Description = "sddddddddddddddddd"
+            };
+            Animal entity3 = new Animal
+            {
+                Description = "dfergeeeeeeeeeeeeee"
+            };
+            //session.Update(entity1);
+            //session.Update(entity2);
+            //session.Flush();
+
+            Animal a = session.Get<Animal>(1);
+            session.Save(entity3);
+        }
     }
 }
