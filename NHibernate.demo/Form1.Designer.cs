@@ -73,7 +73,13 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button50 = new System.Windows.Forms.Button();
+            this.button49 = new System.Windows.Forms.Button();
+            this.button48 = new System.Windows.Forms.Button();
+            this.button47 = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button46 = new System.Windows.Forms.Button();
+            this.button45 = new System.Windows.Forms.Button();
             this.button44 = new System.Windows.Forms.Button();
             this.button42 = new System.Windows.Forms.Button();
             this.button41 = new System.Windows.Forms.Button();
@@ -81,16 +87,16 @@
             this.button39 = new System.Windows.Forms.Button();
             this.button38 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button45 = new System.Windows.Forms.Button();
-            this.button46 = new System.Windows.Forms.Button();
-            this.button47 = new System.Windows.Forms.Button();
-            this.button48 = new System.Windows.Forms.Button();
-            this.button49 = new System.Windows.Forms.Button();
-            this.button50 = new System.Windows.Forms.Button();
             this.button51 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.button52 = new System.Windows.Forms.Button();
+            this.button53 = new System.Windows.Forms.Button();
+            this.button54 = new System.Windows.Forms.Button();
+            this.button55 = new System.Windows.Forms.Button();
+            this.button56 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -384,6 +390,9 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button54);
+            this.tabPage3.Controls.Add(this.button53);
+            this.tabPage3.Controls.Add(this.button52);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(711, 101);
@@ -581,6 +590,46 @@
             this.tabPage5.Text = "增删改";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // button50
+            // 
+            this.button50.Location = new System.Drawing.Point(246, 3);
+            this.button50.Name = "button50";
+            this.button50.Size = new System.Drawing.Size(75, 23);
+            this.button50.TabIndex = 3;
+            this.button50.Text = "删除数据";
+            this.button50.UseVisualStyleBackColor = true;
+            this.button50.Click += new System.EventHandler(this.button50_Click);
+            // 
+            // button49
+            // 
+            this.button49.Location = new System.Drawing.Point(165, 3);
+            this.button49.Name = "button49";
+            this.button49.Size = new System.Drawing.Size(75, 23);
+            this.button49.TabIndex = 2;
+            this.button49.Text = "删除数据";
+            this.button49.UseVisualStyleBackColor = true;
+            this.button49.Click += new System.EventHandler(this.button49_Click);
+            // 
+            // button48
+            // 
+            this.button48.Location = new System.Drawing.Point(84, 3);
+            this.button48.Name = "button48";
+            this.button48.Size = new System.Drawing.Size(75, 23);
+            this.button48.TabIndex = 1;
+            this.button48.Text = "修改数据";
+            this.button48.UseVisualStyleBackColor = true;
+            this.button48.Click += new System.EventHandler(this.button48_Click);
+            // 
+            // button47
+            // 
+            this.button47.Location = new System.Drawing.Point(3, 3);
+            this.button47.Name = "button47";
+            this.button47.Size = new System.Drawing.Size(75, 23);
+            this.button47.TabIndex = 0;
+            this.button47.Text = "添加数据";
+            this.button47.UseVisualStyleBackColor = true;
+            this.button47.Click += new System.EventHandler(this.button47_Click);
+            // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.button46);
@@ -597,6 +646,26 @@
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "存储过程";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button46
+            // 
+            this.button46.Location = new System.Drawing.Point(97, 32);
+            this.button46.Name = "button46";
+            this.button46.Size = new System.Drawing.Size(133, 23);
+            this.button46.TabIndex = 7;
+            this.button46.Text = "返回自定义实体数据";
+            this.button46.UseVisualStyleBackColor = true;
+            this.button46.Click += new System.EventHandler(this.button46_Click);
+            // 
+            // button45
+            // 
+            this.button45.Location = new System.Drawing.Point(3, 32);
+            this.button45.Name = "button45";
+            this.button45.Size = new System.Drawing.Size(88, 23);
+            this.button45.TabIndex = 6;
+            this.button45.Text = "返回实体数据";
+            this.button45.UseVisualStyleBackColor = true;
+            this.button45.Click += new System.EventHandler(this.button45_Click);
             // 
             // button44
             // 
@@ -660,6 +729,8 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.button56);
+            this.tabPage6.Controls.Add(this.button55);
             this.tabPage6.Controls.Add(this.button51);
             this.tabPage6.Controls.Add(this.button19);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
@@ -668,6 +739,16 @@
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "其它";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // button51
+            // 
+            this.button51.Location = new System.Drawing.Point(100, 3);
+            this.button51.Name = "button51";
+            this.button51.Size = new System.Drawing.Size(75, 23);
+            this.button51.TabIndex = 1;
+            this.button51.Text = "flush";
+            this.button51.UseVisualStyleBackColor = true;
+            this.button51.Click += new System.EventHandler(this.button51_Click);
             // 
             // button19
             // 
@@ -679,75 +760,55 @@
             this.button19.UseVisualStyleBackColor = true;
             this.button19.Click += new System.EventHandler(this.button19_Click_1);
             // 
-            // button45
+            // button52
             // 
-            this.button45.Location = new System.Drawing.Point(3, 32);
-            this.button45.Name = "button45";
-            this.button45.Size = new System.Drawing.Size(88, 23);
-            this.button45.TabIndex = 6;
-            this.button45.Text = "返回实体数据";
-            this.button45.UseVisualStyleBackColor = true;
-            this.button45.Click += new System.EventHandler(this.button45_Click);
+            this.button52.Location = new System.Drawing.Point(3, 3);
+            this.button52.Name = "button52";
+            this.button52.Size = new System.Drawing.Size(75, 23);
+            this.button52.TabIndex = 0;
+            this.button52.Text = "分页";
+            this.button52.UseVisualStyleBackColor = true;
+            this.button52.Click += new System.EventHandler(this.button52_Click);
             // 
-            // button46
+            // button53
             // 
-            this.button46.Location = new System.Drawing.Point(97, 32);
-            this.button46.Name = "button46";
-            this.button46.Size = new System.Drawing.Size(133, 23);
-            this.button46.TabIndex = 7;
-            this.button46.Text = "返回自定义实体数据";
-            this.button46.UseVisualStyleBackColor = true;
-            this.button46.Click += new System.EventHandler(this.button46_Click);
+            this.button53.Location = new System.Drawing.Point(84, 3);
+            this.button53.Name = "button53";
+            this.button53.Size = new System.Drawing.Size(75, 23);
+            this.button53.TabIndex = 1;
+            this.button53.Text = "排序";
+            this.button53.UseVisualStyleBackColor = true;
+            this.button53.Click += new System.EventHandler(this.button53_Click);
             // 
-            // button47
+            // button54
             // 
-            this.button47.Location = new System.Drawing.Point(3, 3);
-            this.button47.Name = "button47";
-            this.button47.Size = new System.Drawing.Size(75, 23);
-            this.button47.TabIndex = 0;
-            this.button47.Text = "添加数据";
-            this.button47.UseVisualStyleBackColor = true;
-            this.button47.Click += new System.EventHandler(this.button47_Click);
+            this.button54.Location = new System.Drawing.Point(165, 3);
+            this.button54.Name = "button54";
+            this.button54.Size = new System.Drawing.Size(75, 23);
+            this.button54.TabIndex = 2;
+            this.button54.Text = "多排序";
+            this.button54.UseVisualStyleBackColor = true;
+            this.button54.Click += new System.EventHandler(this.button54_Click);
             // 
-            // button48
+            // button55
             // 
-            this.button48.Location = new System.Drawing.Point(84, 3);
-            this.button48.Name = "button48";
-            this.button48.Size = new System.Drawing.Size(75, 23);
-            this.button48.TabIndex = 1;
-            this.button48.Text = "修改数据";
-            this.button48.UseVisualStyleBackColor = true;
-            this.button48.Click += new System.EventHandler(this.button48_Click);
+            this.button55.Location = new System.Drawing.Point(181, 3);
+            this.button55.Name = "button55";
+            this.button55.Size = new System.Drawing.Size(75, 23);
+            this.button55.TabIndex = 2;
+            this.button55.Text = "ADO 查询";
+            this.button55.UseVisualStyleBackColor = true;
+            this.button55.Click += new System.EventHandler(this.button55_Click);
             // 
-            // button49
+            // button56
             // 
-            this.button49.Location = new System.Drawing.Point(165, 3);
-            this.button49.Name = "button49";
-            this.button49.Size = new System.Drawing.Size(75, 23);
-            this.button49.TabIndex = 2;
-            this.button49.Text = "删除数据";
-            this.button49.UseVisualStyleBackColor = true;
-            this.button49.Click += new System.EventHandler(this.button49_Click);
-            // 
-            // button50
-            // 
-            this.button50.Location = new System.Drawing.Point(246, 3);
-            this.button50.Name = "button50";
-            this.button50.Size = new System.Drawing.Size(75, 23);
-            this.button50.TabIndex = 3;
-            this.button50.Text = "删除数据";
-            this.button50.UseVisualStyleBackColor = true;
-            this.button50.Click += new System.EventHandler(this.button50_Click);
-            // 
-            // button51
-            // 
-            this.button51.Location = new System.Drawing.Point(100, 3);
-            this.button51.Name = "button51";
-            this.button51.Size = new System.Drawing.Size(75, 23);
-            this.button51.TabIndex = 1;
-            this.button51.Text = "flush";
-            this.button51.UseVisualStyleBackColor = true;
-            this.button51.Click += new System.EventHandler(this.button51_Click);
+            this.button56.Location = new System.Drawing.Point(262, 3);
+            this.button56.Name = "button56";
+            this.button56.Size = new System.Drawing.Size(75, 23);
+            this.button56.TabIndex = 3;
+            this.button56.Text = "ADO 无查询";
+            this.button56.UseVisualStyleBackColor = true;
+            this.button56.Click += new System.EventHandler(this.button56_Click);
             // 
             // Form1
             // 
@@ -763,6 +824,7 @@
             this.Text = "NHibernate.Demo";
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
@@ -834,6 +896,11 @@
         private System.Windows.Forms.Button button49;
         private System.Windows.Forms.Button button50;
         private System.Windows.Forms.Button button51;
+        private System.Windows.Forms.Button button52;
+        private System.Windows.Forms.Button button53;
+        private System.Windows.Forms.Button button54;
+        private System.Windows.Forms.Button button55;
+        private System.Windows.Forms.Button button56;
     }
 }
 

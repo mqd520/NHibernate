@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using NHibernate.demo.Entity;
 using NHibernate;
 using NHibernate.Linq;
+using NHibernate.Criterion;
+using NHibernate.Criterion.Lambda;
 
 namespace NHibernate.demo
 {
@@ -25,7 +27,7 @@ namespace NHibernate.demo
         {
             ISession session = NHibernateHelper.CreateSession();
             var list = session.CreateQuery("from Employees").List<Employees>();
-            Tool.FillListView<Employees>(list, listView1);
+            Tool.FillListView(list, listView1);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -33,7 +35,7 @@ namespace NHibernate.demo
             ISession session = NHibernateHelper.CreateSession();
             ISQLQuery query = session.CreateSQLQuery("select * from Orders").AddEntity(typeof(Orders));
             var list = query.List<Orders>();
-            Tool.FillListView<Orders>(list, listView1);
+            Tool.FillListView(list, listView1);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -52,7 +54,7 @@ namespace NHibernate.demo
                                        join c in session.Query<Customers>() on o.CustomerId equals c.CustomerId
                                        select o;
             IList<Orders> list = query.ToList<Orders>();
-            Tool.FillListView<Orders>(list, listView1);
+            Tool.FillListView(list, listView1);
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -60,7 +62,7 @@ namespace NHibernate.demo
             ISession session = NHibernateHelper.CreateSession();
             IQuery query = session.CreateQuery("from Products").SetFirstResult((1 - 1) * 10).SetMaxResults(10);
             var list = query.List<Products>();
-            Tool.FillListView<Products>(list, listView1);
+            Tool.FillListView(list, listView1);
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -70,7 +72,7 @@ namespace NHibernate.demo
             ISQLQuery query1 = (ISQLQuery)query;
             query1 = query1.AddEntity(typeof(Orders));
             var list = query.List<Orders>();
-            Tool.FillListView<Orders>(list, listView1);
+            Tool.FillListView(list, listView1);
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -216,7 +218,7 @@ namespace NHibernate.demo
         {
             ISession session = NHibernateHelper.CreateSession(s => Console.WriteLine(s));
             var list = session.CreateQuery("from Employees").List<Employees>();
-            Tool.FillListView<Employees>(list, listView1);
+            Tool.FillListView(list, listView1);
         }
 
         private void button20_Click(object sender, EventArgs e)
@@ -287,7 +289,7 @@ namespace NHibernate.demo
                                             on new { p1 = o.CustomerId, p2 = o.ShipAddress } equals new { p1 = c.ContactTitle, p2 = c.ContactName }
                                        select o;
             IList<Orders> list = query.ToList<Orders>();
-            Tool.FillListView<Orders>(list, listView1);
+            Tool.FillListView(list, listView1);
         }
 
         private void button27_Click(object sender, EventArgs e)
@@ -378,7 +380,7 @@ namespace NHibernate.demo
             ISQLQuery query1 = (ISQLQuery)query;
             query1 = query1.AddEntity(typeof(Orders));
             var list = query.List<Orders>();
-            Tool.FillListView<Orders>(list, listView1);
+            Tool.FillListView(list, listView1);
         }
 
         private void button32_Click(object sender, EventArgs e)
@@ -565,7 +567,7 @@ namespace NHibernate.demo
             Animal entity1 = new Animal
             {
                 Id = 15,
-                Description ="sddddddddddddddddd"
+                Description = "sddddddddddddddddd"
             };
             Animal entity2 = new Animal
             {
@@ -582,6 +584,76 @@ namespace NHibernate.demo
 
             Animal a = session.Get<Animal>(1);
             session.Save(entity3);
+        }
+
+        private void button52_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            ICriteria cri = session.CreateCriteria(typeof(Animal));
+            cri = cri.SetFirstResult(0).SetMaxResults(10);
+            IList<Animal> list = cri.List<Animal>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button53_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            ICriteria cri = session.CreateCriteria(typeof(Animal));
+            Order or = new Order("Id", false);
+            cri = cri.AddOrder(or);
+            IList<Animal> list = cri.List<Animal>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button54_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            ICriteria cri = session.CreateCriteria(typeof(Animal));
+            Order or1 = new Order("Id", false);
+            Order or2 = new Order("body_weight", true);
+            cri = cri.AddOrder(or1).AddOrder(or2);
+            IList<Animal> list = cri.List<Animal>();
+            Tool.FillListView(list, listView1);
+        }
+
+        private void button55_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IDbCommand cmd = session.Connection.CreateCommand();
+            cmd.CommandText = "select * from animal";
+            cmd.CommandType = CommandType.Text;
+            IDataReader reader = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            DataColumn[] cols = new DataColumn[reader.FieldCount];
+            for (int i = 0; i < reader.FieldCount; i++)
+            {
+                cols[i] = new DataColumn(reader.GetName(i));
+            }
+            dt.Columns.AddRange(cols);
+            while (reader.Read())
+            {
+                object[] values = new object[reader.FieldCount];
+                int n = reader.GetValues(values);
+                DataRow dr = dt.NewRow();
+                for (int i = 0; i < reader.FieldCount; i++)
+                {
+                    dr[i] = values[i];
+                }
+                dt.Rows.Add(dr);
+            }
+            reader.Dispose();
+            session.Disconnect();
+            Tool.FillListView(dt, listView1);
+        }
+
+        private void button56_Click(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            IDbCommand cmd = session.Connection.CreateCommand();
+            cmd.CommandText = "delete from animal where id=0";
+            cmd.CommandType = CommandType.Text;
+            int n = cmd.ExecuteNonQuery();
+            MessageBox.Show(n.ToString());
         }
     }
 }
