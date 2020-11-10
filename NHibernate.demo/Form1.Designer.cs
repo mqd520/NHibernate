@@ -56,6 +56,9 @@
             this.button17 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button54 = new System.Windows.Forms.Button();
+            this.button53 = new System.Windows.Forms.Button();
+            this.button52 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.button37 = new System.Windows.Forms.Button();
             this.button36 = new System.Windows.Forms.Button();
@@ -87,13 +90,10 @@
             this.button39 = new System.Windows.Forms.Button();
             this.button38 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button56 = new System.Windows.Forms.Button();
+            this.button55 = new System.Windows.Forms.Button();
             this.button51 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
-            this.button52 = new System.Windows.Forms.Button();
-            this.button53 = new System.Windows.Forms.Button();
-            this.button54 = new System.Windows.Forms.Button();
-            this.button55 = new System.Windows.Forms.Button();
-            this.button56 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -399,6 +399,36 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Criteria";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button54
+            // 
+            this.button54.Location = new System.Drawing.Point(165, 3);
+            this.button54.Name = "button54";
+            this.button54.Size = new System.Drawing.Size(75, 23);
+            this.button54.TabIndex = 2;
+            this.button54.Text = "多排序";
+            this.button54.UseVisualStyleBackColor = true;
+            this.button54.Click += new System.EventHandler(this.button54_Click);
+            // 
+            // button53
+            // 
+            this.button53.Location = new System.Drawing.Point(84, 3);
+            this.button53.Name = "button53";
+            this.button53.Size = new System.Drawing.Size(75, 23);
+            this.button53.TabIndex = 1;
+            this.button53.Text = "排序";
+            this.button53.UseVisualStyleBackColor = true;
+            this.button53.Click += new System.EventHandler(this.button53_Click);
+            // 
+            // button52
+            // 
+            this.button52.Location = new System.Drawing.Point(3, 3);
+            this.button52.Name = "button52";
+            this.button52.Size = new System.Drawing.Size(75, 23);
+            this.button52.TabIndex = 0;
+            this.button52.Text = "分页";
+            this.button52.UseVisualStyleBackColor = true;
+            this.button52.Click += new System.EventHandler(this.button52_Click);
             // 
             // tabPage4
             // 
@@ -740,6 +770,26 @@
             this.tabPage6.Text = "其它";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // button56
+            // 
+            this.button56.Location = new System.Drawing.Point(262, 3);
+            this.button56.Name = "button56";
+            this.button56.Size = new System.Drawing.Size(75, 23);
+            this.button56.TabIndex = 3;
+            this.button56.Text = "ADO 无查询";
+            this.button56.UseVisualStyleBackColor = true;
+            this.button56.Click += new System.EventHandler(this.button56_Click);
+            // 
+            // button55
+            // 
+            this.button55.Location = new System.Drawing.Point(181, 3);
+            this.button55.Name = "button55";
+            this.button55.Size = new System.Drawing.Size(75, 23);
+            this.button55.TabIndex = 2;
+            this.button55.Text = "ADO 查询";
+            this.button55.UseVisualStyleBackColor = true;
+            this.button55.Click += new System.EventHandler(this.button55_Click);
+            // 
             // button51
             // 
             this.button51.Location = new System.Drawing.Point(100, 3);
@@ -759,56 +809,6 @@
             this.button19.Text = "查看SQL语句";
             this.button19.UseVisualStyleBackColor = true;
             this.button19.Click += new System.EventHandler(this.button19_Click_1);
-            // 
-            // button52
-            // 
-            this.button52.Location = new System.Drawing.Point(3, 3);
-            this.button52.Name = "button52";
-            this.button52.Size = new System.Drawing.Size(75, 23);
-            this.button52.TabIndex = 0;
-            this.button52.Text = "分页";
-            this.button52.UseVisualStyleBackColor = true;
-            this.button52.Click += new System.EventHandler(this.button52_Click);
-            // 
-            // button53
-            // 
-            this.button53.Location = new System.Drawing.Point(84, 3);
-            this.button53.Name = "button53";
-            this.button53.Size = new System.Drawing.Size(75, 23);
-            this.button53.TabIndex = 1;
-            this.button53.Text = "排序";
-            this.button53.UseVisualStyleBackColor = true;
-            this.button53.Click += new System.EventHandler(this.button53_Click);
-            // 
-            // button54
-            // 
-            this.button54.Location = new System.Drawing.Point(165, 3);
-            this.button54.Name = "button54";
-            this.button54.Size = new System.Drawing.Size(75, 23);
-            this.button54.TabIndex = 2;
-            this.button54.Text = "多排序";
-            this.button54.UseVisualStyleBackColor = true;
-            this.button54.Click += new System.EventHandler(this.button54_Click);
-            // 
-            // button55
-            // 
-            this.button55.Location = new System.Drawing.Point(181, 3);
-            this.button55.Name = "button55";
-            this.button55.Size = new System.Drawing.Size(75, 23);
-            this.button55.TabIndex = 2;
-            this.button55.Text = "ADO 查询";
-            this.button55.UseVisualStyleBackColor = true;
-            this.button55.Click += new System.EventHandler(this.button55_Click);
-            // 
-            // button56
-            // 
-            this.button56.Location = new System.Drawing.Point(262, 3);
-            this.button56.Name = "button56";
-            this.button56.Size = new System.Drawing.Size(75, 23);
-            this.button56.TabIndex = 3;
-            this.button56.Text = "ADO 无查询";
-            this.button56.UseVisualStyleBackColor = true;
-            this.button56.Click += new System.EventHandler(this.button56_Click);
             // 
             // Form1
             // 
