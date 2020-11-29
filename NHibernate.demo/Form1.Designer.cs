@@ -822,6 +822,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "NHibernate.Demo";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);

@@ -655,5 +655,21 @@ namespace NHibernate.demo
             int n = cmd.ExecuteNonQuery();
             MessageBox.Show(n.ToString());
         }
+
+
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ISession session = NHibernateHelper.CreateSession();
+            var query = session.Query<NHibernate.demo.Entity.Entity.UserBetRecordInfo>();
+            var ls = query.ToList();
+        }
+    }
+
+    public class class1
+    {
+        public int Id { get; set; }
+
+        public string UserName { get; set; }
     }
 }

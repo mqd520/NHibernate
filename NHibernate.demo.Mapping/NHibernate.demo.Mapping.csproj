@@ -68,6 +68,7 @@
     <EmbeddedResource Include="Mapping\Employees.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Mapping\UserBetRecordInfo.hbm.xml" />
     <EmbeddedResource Include="BusinessMapping\Class1.hbm.xml" />
     <Content Include="Mapping\EmployeeTerritories.hbm.xml" />
     <Content Include="Mapping\TimeSheetUsers.hbm.xml" />

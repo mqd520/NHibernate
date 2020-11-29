@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="NHibernate.demo.Entity.UserBetRecordInfo, NHibernate.demo.Entity" table="betlog">
+    <id name="Id" column="Id" type="int" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+    <property name="FromPlatform" column="fromplatform" type="int"  />
+    <property name="ToND" column="tond" type="int"  />
+    <property name="Amount" column="amount" type="double"  />
+    <property name="Region" column="region" type="string"  />
+    <property name="Username" column="username" type="string"  />
+    <property name="Ndusername" column="ndusername" type="string"  />
+    <property name="Apitype" column="apitype" type="int"  />
+    <property name="Result" column="result" type="int"  />
+    <property name="FrisbeeStatus" column="frisbeestatus" type="int"  />
+    <property name="Pulltime" column="pulltime" type="DateTime"  />
+    <property name="Bettime" column="bettime" type="DateTime"  />
+    <property name="Period" column="period" type="string"  />
+    <property name="GameType" column="gameType" type="int"  />
+    <property name="Guid" column="guid" type="string"  />
+    <property name="StatusText" column="statustext" type="string"  />
+    <property name="ResultText" column="resulttext" type="string"  />
+  </class>
+</hibernate-mapping>

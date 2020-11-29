@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<hibernate-configuration  xmlns="urn:nhibernate-configuration-2.2" >
+<!--<hibernate-configuration  xmlns="urn:nhibernate-configuration-2.2" >
   <session-factory>
     <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
     <property name="connection.connection_string">
@@ -14,5 +14,18 @@
     <property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
 
     <mapping assembly="NHibernate.demo.Mapping" />
+  </session-factory>
+</hibernate-configuration>-->
+
+<hibernate-configuration xmlns="urn:nhibernate-configuration-2.2">
+  <session-factory>
+    <property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
+    <property name="connection.driver_class">NHibernate.Driver.MySqlDataDriver</property>
+    <property name="connection.connection_string">Server=192.168.0.200;Port=3306;Database=frisbee;User ID=mi;Password=123456;CharSet=utf8</property>
+    <property name="dialect">NHibernate.Dialect.MySQL5Dialect</property>
+    <property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
+    <property name="hbm2ddl.keywords">none</property>
+    <property name="show_sql">false</property>
+    <mapping assembly="NHibernate.demo.Mapping"/>
   </session-factory>
 </hibernate-configuration>
