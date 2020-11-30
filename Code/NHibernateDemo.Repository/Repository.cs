@@ -633,5 +633,109 @@ namespace NHibernateDemo.Repository
             return ls;
         }
         #endregion
+
+
+        #region Update
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public void Update(T entity)
+        {
+            var session = OpenSession();
+
+            try
+            {
+                session.SaveOrUpdate(entity);
+            }
+            catch (Exception e)
+            {
+                session.Close();
+                throw e;
+            }
+
+            session.Close();
+        }
+
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public void Update(IList<T> entities)
+        {
+            var session = OpenSession();
+            using (ITransaction transaction = session.BeginTransaction())
+            {
+                try
+                {
+                    foreach (var item in entities)
+                    {
+                        session.SaveOrUpdate(item);
+                    }
+                    transaction.Commit();
+                }
+                catch (HibernateException e)
+                {
+                    transaction.Rollback();
+                    throw e;
+                }
+            }
+
+            session.Close();
+        }
+        #endregion
+
+
+        #region Delete
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="entity"></param>
+        public void Delete(T entity)
+        {
+            var session = OpenSession();
+
+            try
+            {
+                session.Delete(entity);
+            }
+            catch (Exception e)
+            {
+                session.Close();
+                throw e;
+            }
+
+            session.Close();
+        }
+
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="key"></param>
+        public void Delete(object key)
+        {
+            var session = OpenSession();
+
+            try
+            {
+                T t = session.Get<T>(key);
+                if (t != null)
+                {
+                    session.Delete(t);
+                }
+
+                session.Flush();
+            }
+            catch (Exception e)
+            {
+                session.Close();
+                throw e;
+            }
+
+            session.Close();
+        }
+        #endregion
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 using Common;
 
+using NHibernateDemo.DAL;
 using NHibernateDemo.Entity;
 using NHibernateDemo.IRepository;
 using NHibernateDemo.Repository;
@@ -203,6 +204,79 @@ namespace NHibernateDemo.WinForm1
 
             string str = ls1.ConcatElement(Environment.NewLine);
             MessageBox.Show(str);
+        }
+        #endregion
+
+
+        #region Update
+        private void button15_Click(object sender, EventArgs e)
+        {
+            var entity = new Customers
+            {
+                CustomerId = "ALFKI",
+                Address = "sdss",
+                City = "2d3d3d",
+                CompanyName = "sdsds",
+                ContactName = "kjioio",
+                ContactTitle = "bnbvb",
+                Country = "USA",
+                Fax = "56757",
+                Phone = "676786",
+                PostalCode = "78678",
+                Region = "sdsds"
+            };
+
+            _customersRepostory.Update(entity);
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            var entities = new List<Customers>();
+            var entity = new Customers
+            {
+                CustomerId = "ALFKI",
+                Address = "sdss",
+                City = "2d3d3d",
+                CompanyName = "sdsds",
+                ContactName = "kjioio",
+                ContactTitle = "bnbvb",
+                Country = "USA",
+                Fax = "56757",
+                Phone = "676786",
+                PostalCode = "78678",
+                Region = "sdsds"
+            };
+            entities.Add(entity);
+
+            _customersRepostory.Update(entities);
+        }
+        #endregion
+
+
+        #region Delete
+        private void button17_Click(object sender, EventArgs e)
+        {
+            var entity = new Customers
+            {
+                CustomerId = "ALFKI",
+                Address = "sdss",
+                City = "2d3d3d",
+                CompanyName = "sdsds",
+                ContactName = "kjioio",
+                ContactTitle = "bnbvb",
+                Country = "USA",
+                Fax = "56757",
+                Phone = "676786",
+                PostalCode = "78678",
+                Region = "sdsds"
+            };
+
+            _customersRepostory.Delete(entity);
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            _customersRepostory.Delete("ALFKI");
         }
         #endregion
     }

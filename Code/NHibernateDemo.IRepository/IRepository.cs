@@ -154,5 +154,37 @@ namespace NHibernateDemo.IRepository
         /// <returns></returns>
         IList<object> Add(IList<T> entities);
         #endregion
+
+
+        #region Update
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        void Update(T entity);
+
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        void Update(IList<T> entities);
+        #endregion
+
+
+        #region Delete
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="entity"></param>
+        void Delete(T entity);
+
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="key"></param>
+        void Delete(object key);
+        #endregion
     }
 }

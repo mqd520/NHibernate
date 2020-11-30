@@ -45,17 +45,27 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button13 = new System.Windows.Forms.Button();
-            this.listView1 = new NHibernateDemo.WinForm1._03_UI_Tool.MyListView();
             this.button14 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button17 = new System.Windows.Forms.Button();
+            this.listView1 = new NHibernateDemo.WinForm1._03_UI_Tool.MyListView();
+            this.button18 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -225,6 +235,68 @@
             this.button13.UseVisualStyleBackColor = true;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(91, 5);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(75, 23);
+            this.button14.TabIndex = 1;
+            this.button14.Text = "Add";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.button16);
+            this.tabPage3.Controls.Add(this.button15);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(810, 97);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Update";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(11, 5);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.TabIndex = 0;
+            this.button15.Text = "Update";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(92, 5);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(75, 23);
+            this.button16.TabIndex = 1;
+            this.button16.Text = "Update";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.button18);
+            this.tabPage4.Controls.Add(this.button17);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(810, 97);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Delete";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(7, 4);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(75, 23);
+            this.button17.TabIndex = 0;
+            this.button17.Text = "Delete";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
             // listView1
             // 
             this.listView1.FullRowSelect = true;
@@ -237,15 +309,15 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // button14
+            // button18
             // 
-            this.button14.Location = new System.Drawing.Point(91, 5);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 23);
-            this.button14.TabIndex = 1;
-            this.button14.Text = "Add";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
+            this.button18.Location = new System.Drawing.Point(88, 4);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(75, 23);
+            this.button18.TabIndex = 1;
+            this.button18.Text = "Delete";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // Form1
             // 
@@ -265,6 +337,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -288,6 +362,12 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Button button18;
     }
 }
 
