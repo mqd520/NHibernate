@@ -34,12 +34,24 @@ namespace NHibernateDemo.WinForm1
 
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
         {
+            CommonLogger.WriteLog(
+                ELogCategory.Fatal,
+                string.Format("Application_ThreadException Exception: {0}", e.Exception.Message),
+                e.Exception
+            );
+
             MessageBox.Show(string.Format("Application_ThreadException Exception: {0}{1}", Environment.NewLine, e.Exception.Message));
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var exception = e.ExceptionObject as Exception;
+            CommonLogger.WriteLog(
+                ELogCategory.Fatal,
+                string.Format("CurrentDomain_UnhandledException Exception: {0}", exception.Message),
+                exception
+            );
+
             MessageBox.Show(string.Format("CurrentDomain_UnhandledException Exception: {0}{1}", Environment.NewLine, exception.Message));
         }
     }
