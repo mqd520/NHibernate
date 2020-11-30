@@ -10,6 +10,16 @@ namespace NHibernateDemo.IRepository
     public interface IRepository<T>
     {
         #region Query
+        #region Query Single
+        /// <summary>
+        /// Query
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        T Query(object id);
+        #endregion
+
+
         #region Query All
         /// <summary>
         /// Query All
@@ -70,7 +80,79 @@ namespace NHibernateDemo.IRepository
         /// <param name="count"></param>
         /// <returns></returns>
         IList<T> QueryPaging(int page, int size, out int count);
+
+        /// <summary>
+        /// Query Paging
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        IList<T> QueryPaging<TKey>(int page, int size, out int count, Expression<Func<T, TKey>> keySelector, bool asc);
+
+        /// <summary>
+        /// Query Paging
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <param name="count"></param>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        IList<T> QueryPaging(int page, int size, out int count, Expression<Func<T, bool>> where);
+
+        /// <summary>
+        /// Query Paging
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <param name="count"></param>
+        /// <param name="lsWhere"></param>
+        /// <returns></returns>
+        IList<T> QueryPaging(int page, int size, out int count, IList<Expression<Func<T, bool>>> lsWhere);
+
+        /// <summary>
+        /// Query Paging
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <param name="count"></param>
+        /// <param name="lsWhere"></param>
+        /// <param name="keySelector"></param>
+        /// <param name="asc"></param>
+        /// <returns></returns>
+        IList<T> QueryPaging<TKey>(int page, int size, out int count, IList<Expression<Func<T, bool>>> lsWhere, Expression<Func<T, TKey>> keySelector, bool asc);
+
+        /// <summary>
+        /// Query Paging
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <param name="count"></param>
+        /// <param name="where"></param>
+        /// <param name="keySelector"></param>
+        /// <param name="asc"></param>
+        /// <returns></returns>
+        IList<T> QueryPaging<TKey>(int page, int size, out int count, Expression<Func<T, bool>> where, Expression<Func<T, TKey>> keySelector, bool asc);
         #endregion
+        #endregion
+
+
+        #region Add
+        /// <summary>
+        /// Add
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        object Add(T entity);
+
+        /// <summary>
+        /// Add
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        IList<object> Add(IList<T> entities);
         #endregion
     }
 }

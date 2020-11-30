@@ -87,6 +87,123 @@ namespace NHibernateDemo.WinForm1
 
             Tool.FillListView(ls, listView1);
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            var ls = _customersRepostory.QueryPaging(1, 10, out count, x => x.CompanyName, true);
+
+            Tool.FillListView(ls, listView1);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            var ls = _customersRepostory.QueryPaging(1, 10, out count, x => x.Country == "USA");
+
+            Tool.FillListView(ls, listView1);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            var lsWhere = new List<Expression<Func<Customers, bool>>>();
+            lsWhere.Add(x => x.Country == "USA");
+            lsWhere.Add(x => x.PostalCode.StartsWith("9"));
+            var ls = _customersRepostory.QueryPaging(1, 10, out count, lsWhere);
+
+            Tool.FillListView(ls, listView1);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            var lsWhere = new List<Expression<Func<Customers, bool>>>();
+            lsWhere.Add(x => x.Country == "USA");
+            lsWhere.Add(x => x.PostalCode.StartsWith("9"));
+            var ls = _customersRepostory.QueryPaging(1, 10, out count, lsWhere, x => x.CompanyName, true);
+
+            Tool.FillListView(ls, listView1);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            var ls = _customersRepostory.QueryPaging(1, 10, out count, x => x.Country == "USA", x => x.CompanyName, true);
+
+            Tool.FillListView(ls, listView1);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            var customer = _customersRepostory.Query("ANATR");
+            var ls = new List<Customers>();
+            ls.Add(customer);
+
+            Tool.FillListView(ls, listView1);
+        }
+        #endregion
+
+
+        #region Add
+        private void button13_Click(object sender, EventArgs e)
+        {
+            var entity = new Customers
+            {
+                Address = "ascdsafc dfddffd",
+                City = "USA",
+                CompanyName = "CompanyName1",
+                ContactName = "6hgyu fyfg",
+                ContactTitle = "sdsdsds",
+                Country = "USA",
+                CustomerId = RandTool.RandNumberString(5),
+                Fax = "98787878",
+                Phone = "222232323",
+                PostalCode = "56567",
+                Region = "sadjajdk"
+            };
+            object obj = _customersRepostory.Add(entity);
+
+            MessageBox.Show(obj.ToString());
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            IList<Customers> entities = new List<Customers>();
+            entities.Add(new Customers
+            {
+                Address = "ascdsafc dfddffd",
+                City = "USA",
+                CompanyName = "CompanyName1",
+                ContactName = "6hgyu fyfg",
+                ContactTitle = "sdsdsds",
+                Country = "USA",
+                CustomerId = RandTool.RandNumberString(5),
+                Fax = "98787878",
+                Phone = "222232323",
+                PostalCode = "56567",
+                Region = "sadjajdk"
+            });
+            entities.Add(new Customers
+            {
+                Address = "ascdsafc dfddffd",
+                City = "USA",
+                CompanyName = "CompanyName1",
+                ContactName = "6hgyu fyfg",
+                ContactTitle = "sdsdsds",
+                Country = "USA",
+                CustomerId = RandTool.RandNumberString(5),
+                Fax = "98787878",
+                Phone = "222232323",
+                PostalCode = "56567",
+                Region = "sadjajdk"
+            });
+
+            var ls1 = _customersRepostory.Add(entities);
+
+            string str = ls1.ConcatElement(Environment.NewLine);
+            MessageBox.Show(str);
+        }
         #endregion
     }
 }
