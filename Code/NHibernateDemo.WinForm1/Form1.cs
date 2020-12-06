@@ -137,8 +137,29 @@ namespace NHibernateDemo.WinForm1
 
         private void button12_Click(object sender, EventArgs e)
         {
-            var customer = _customersRepostory.Query("ANATR");
+            var customer = _customersRepostory.QuerySingle("ANATR");
             var ls = new List<Customers>();
+            ls.Add(customer);
+
+            Tool.FillListView(ls, listView1);
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            var ls = new List<Customers>();
+            var customer = _customersRepostory.QuerySingle(x => x.CustomerId == "BERGS");
+            ls.Add(customer);
+
+            Tool.FillListView(ls, listView1);
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            var ls = new List<Customers>();
+            var wheres = new List<Expression<Func<Customers, bool>>>();
+            wheres.Add(x => x.Country == "USA");
+            wheres.Add(x => x.CustomerId == "GREAL");
+            var customer = _customersRepostory.QuerySingle(wheres);
             ls.Add(customer);
 
             Tool.FillListView(ls, listView1);
@@ -151,7 +172,7 @@ namespace NHibernateDemo.WinForm1
         {
             var entity = new Customers
             {
-                Address = "ascdsafc dfddffd",
+                Address = "sdsdcfsds",
                 City = "USA",
                 CompanyName = "CompanyName1",
                 ContactName = "6hgyu fyfg",
@@ -216,7 +237,7 @@ namespace NHibernateDemo.WinForm1
                 CustomerId = "ALFKI",
                 Address = "sdss",
                 City = "2d3d3d",
-                CompanyName = "sdsds",
+                CompanyName = "AAAAAAAAAAAAA",
                 ContactName = "kjioio",
                 ContactTitle = "bnbvb",
                 Country = "USA",
@@ -258,7 +279,7 @@ namespace NHibernateDemo.WinForm1
         {
             var entity = new Customers
             {
-                CustomerId = "ALFKI",
+                CustomerId = "04826",
                 Address = "sdss",
                 City = "2d3d3d",
                 CompanyName = "sdsds",
@@ -276,7 +297,51 @@ namespace NHibernateDemo.WinForm1
 
         private void button18_Click(object sender, EventArgs e)
         {
-            _customersRepostory.Delete("ALFKI");
+            _customersRepostory.Delete("25062");
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            var ls = new List<Customers>();
+            ls.Add(new Customers
+            {
+                CustomerId = "22658",
+                Address = "sdss",
+                City = "2d3d3d",
+                CompanyName = "sdsds",
+                ContactName = "kjioio",
+                ContactTitle = "bnbvb",
+                Country = "USA",
+                Fax = "56757",
+                Phone = "676786",
+                PostalCode = "78678",
+                Region = "sdsds"
+            });
+            ls.Add(new Customers
+            {
+                CustomerId = "25111",
+                Address = "sdss",
+                City = "2d3d3d",
+                CompanyName = "sdsds",
+                ContactName = "kjioio",
+                ContactTitle = "bnbvb",
+                Country = "USA",
+                Fax = "56757",
+                Phone = "676786",
+                PostalCode = "78678",
+                Region = "sdsds"
+            });
+
+            _customersRepostory.Delete(ls);
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            var ls = new List<string>();
+            ls.Add("33310");
+            ls.Add("35058");
+
+            _customersRepostory.Delete(ls);
         }
         #endregion
     }

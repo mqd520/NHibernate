@@ -44,15 +44,19 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button13 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button15 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.button17 = new System.Windows.Forms.Button();
-            this.listView1 = new NHibernateDemo.WinForm1._03_UI_Tool.MyListView();
             this.button18 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
+            this.button20 = new System.Windows.Forms.Button();
+            this.button21 = new System.Windows.Forms.Button();
+            this.listView1 = new NHibernateDemo.WinForm1._03_UI_Tool.MyListView();
+            this.button22 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -74,6 +78,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button20);
+            this.tabPage1.Controls.Add(this.button19);
             this.tabPage1.Controls.Add(this.button12);
             this.tabPage1.Controls.Add(this.button11);
             this.tabPage1.Controls.Add(this.button10);
@@ -98,9 +104,9 @@
             // 
             this.button12.Location = new System.Drawing.Point(6, 68);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.Size = new System.Drawing.Size(104, 23);
             this.button12.TabIndex = 11;
-            this.button12.Text = "Query";
+            this.button12.Text = "Query Single";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
@@ -225,16 +231,6 @@
             this.tabPage2.Text = "Add";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(10, 5);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 0;
-            this.button13.Text = "Add";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
             // button14
             // 
             this.button14.Location = new System.Drawing.Point(91, 5);
@@ -244,6 +240,16 @@
             this.button14.Text = "Add";
             this.button14.UseVisualStyleBackColor = true;
             this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(10, 5);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(75, 23);
+            this.button13.TabIndex = 0;
+            this.button13.Text = "Add";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // tabPage3
             // 
@@ -256,16 +262,6 @@
             this.tabPage3.Text = "Update";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(11, 5);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 23);
-            this.button15.TabIndex = 0;
-            this.button15.Text = "Update";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
-            // 
             // button16
             // 
             this.button16.Location = new System.Drawing.Point(92, 5);
@@ -276,8 +272,20 @@
             this.button16.UseVisualStyleBackColor = true;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(11, 5);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(75, 23);
+            this.button15.TabIndex = 0;
+            this.button15.Text = "Update";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button22);
+            this.tabPage4.Controls.Add(this.button21);
             this.tabPage4.Controls.Add(this.button18);
             this.tabPage4.Controls.Add(this.button17);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -286,6 +294,16 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Delete";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button18
+            // 
+            this.button18.Location = new System.Drawing.Point(88, 4);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(75, 23);
+            this.button18.TabIndex = 1;
+            this.button18.Text = "Delete";
+            this.button18.UseVisualStyleBackColor = true;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // button17
             // 
@@ -296,6 +314,36 @@
             this.button17.Text = "Delete";
             this.button17.UseVisualStyleBackColor = true;
             this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(116, 68);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(104, 23);
+            this.button19.TabIndex = 12;
+            this.button19.Text = "Query Single";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // button20
+            // 
+            this.button20.Location = new System.Drawing.Point(226, 68);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(104, 23);
+            this.button20.TabIndex = 13;
+            this.button20.Text = "Query Single";
+            this.button20.UseVisualStyleBackColor = true;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
+            // button21
+            // 
+            this.button21.Location = new System.Drawing.Point(169, 4);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(75, 23);
+            this.button21.TabIndex = 2;
+            this.button21.Text = "Delete";
+            this.button21.UseVisualStyleBackColor = true;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
             // listView1
             // 
@@ -309,15 +357,15 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // button18
+            // button22
             // 
-            this.button18.Location = new System.Drawing.Point(88, 4);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(75, 23);
-            this.button18.TabIndex = 1;
-            this.button18.Text = "Delete";
-            this.button18.UseVisualStyleBackColor = true;
-            this.button18.Click += new System.EventHandler(this.button18_Click);
+            this.button22.Location = new System.Drawing.Point(250, 4);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(75, 23);
+            this.button22.TabIndex = 3;
+            this.button22.Text = "Delete";
+            this.button22.UseVisualStyleBackColor = true;
+            this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
             // Form1
             // 
@@ -368,6 +416,10 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.Button button19;
+        private System.Windows.Forms.Button button20;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button22;
     }
 }
 
