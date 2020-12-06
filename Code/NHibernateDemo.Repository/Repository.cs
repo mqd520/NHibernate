@@ -33,23 +33,44 @@ namespace NHibernateDemo.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public T Query(object id)
+        public T QuerySingle(object id)
         {
-            T t = default(T);
-            var session = OpenSession();
-            try
+            using (var session = OpenSession())
             {
-                t = session.Get<T>(id);
+                return session.Get<T>(id);
             }
-            catch (Exception e)
+        }
+
+        /// <summary>
+        /// Query Single
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public T QuerySingle(Expression<Func<T, bool>> where)
+        {
+            using (var session = OpenSession())
             {
-                session.Close();
-                throw e;
+                return session.Query<T>().Where(where).FirstOrDefault();
             }
+        }
 
-            session.Close();
+        /// <summary>
+        /// Query Single
+        /// </summary>
+        /// <param name="wheres"></param>
+        /// <returns></returns>
+        public T QuerySingle(IEnumerable<Expression<Func<T, bool>>> wheres)
+        {
+            using (var session = OpenSession())
+            {
+                var query = session.Query<T>();
+                foreach (var item in wheres)
+                {
+                    query = query.Where(item);
+                }
 
-            return t;
+                return query.FirstOrDefault();
+            }
         }
         #endregion
 
@@ -61,23 +82,10 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryAll()
         {
-            IList<T> ls = new List<T>();
-
-            var session = OpenSession();
-            var query = session.Query<T>();
-            try
+            using (var session = OpenSession())
             {
-                ls = query.ToList();
+                return session.Query<T>().ToList();
             }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            session.Close();
-
-            return ls;
         }
 
         /// <summary>
@@ -88,32 +96,22 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryAll<TKey>(Expression<Func<T, TKey>> keySelector, bool asc)
         {
-            IList<T> ls = new List<T>();
-
-            var session = OpenSession();
-            var query = session.Query<T>();
-            if (asc)
+            using (var session = OpenSession())
             {
-                query = query.OrderBy(keySelector);
-            }
-            else
-            {
-                query = query.OrderByDescending(keySelector);
-            }
+                IList<T> ls = new List<T>();
 
-            try
-            {
-                ls = query.ToList();
-            }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
+                var query = session.Query<T>();
+                if (asc)
+                {
+                    query = query.OrderBy(keySelector);
+                }
+                else
+                {
+                    query = query.OrderByDescending(keySelector);
+                }
 
-            session.Close();
-
-            return ls;
+                return query.ToList();
+            }
         }
 
         /// <summary>
@@ -123,25 +121,13 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryAll(Expression<Func<T, bool>> where)
         {
-            IList<T> ls = new List<T>();
-
-            var session = OpenSession();
-            var query = session.Query<T>();
-            query = query.Where(where);
-
-            try
+            using (var session = OpenSession())
             {
-                ls = query.ToList();
-            }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
+                var query = session.Query<T>();
+                query = query.Where(where);
 
-            session.Close();
-
-            return ls;
+                return query.ToList();
+            }
         }
 
         /// <summary>
@@ -151,28 +137,16 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryAll(IList<Expression<Func<T, bool>>> lsWhere)
         {
-            IList<T> ls = new List<T>();
-
-            var session = OpenSession();
-            var query = session.Query<T>();
-            foreach (var item in lsWhere)
+            using (var session = OpenSession())
             {
-                query = query.Where(item);
-            }
+                var query = session.Query<T>();
+                foreach (var item in lsWhere)
+                {
+                    query = query.Where(item);
+                }
 
-            try
-            {
-                ls = query.ToList();
+                return query.ToList();
             }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            session.Close();
-
-            return ls;
         }
 
         /// <summary>
@@ -185,36 +159,24 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryAll<TKey>(IList<Expression<Func<T, bool>>> lsWhere, Expression<Func<T, TKey>> keySelector, bool asc)
         {
-            IList<T> ls = new List<T>();
+            using (var session = OpenSession())
+            {
+                var query = session.Query<T>();
+                foreach (var item in lsWhere)
+                {
+                    query = query.Where(item);
+                }
+                if (asc)
+                {
+                    query = query.OrderBy(keySelector);
+                }
+                else
+                {
+                    query = query.OrderByDescending(keySelector);
+                }
 
-            var session = OpenSession();
-            var query = session.Query<T>();
-            foreach (var item in lsWhere)
-            {
-                query = query.Where(item);
+                return query.ToList();
             }
-            if (asc)
-            {
-                query = query.OrderBy(keySelector);
-            }
-            else
-            {
-                query = query.OrderByDescending(keySelector);
-            }
-
-            try
-            {
-                ls = query.ToList();
-            }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            session.Close();
-
-            return ls;
         }
 
         /// <summary>
@@ -227,33 +189,21 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryAll<TKey>(Expression<Func<T, bool>> where, Expression<Func<T, TKey>> keySelector, bool asc)
         {
-            IList<T> ls = new List<T>();
-
-            var session = OpenSession();
-            var query = session.Query<T>();
-            query = query.Where(where);
-            if (asc)
+            using (var session = OpenSession())
             {
-                query = query.OrderBy(keySelector);
-            }
-            else
-            {
-                query = query.OrderByDescending(keySelector);
-            }
+                var query = session.Query<T>();
+                query = query.Where(where);
+                if (asc)
+                {
+                    query = query.OrderBy(keySelector);
+                }
+                else
+                {
+                    query = query.OrderByDescending(keySelector);
+                }
 
-            try
-            {
-                ls = query.ToList();
+                return query.ToList();
             }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            session.Close();
-
-            return ls;
         }
         #endregion
 
@@ -268,40 +218,23 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryPaging(int page, int size, out int count)
         {
-            IList<T> ls = new List<T>();
-
-            count = 0;
-            var session = OpenSession();
-            var query = session.Query<T>();
-
-            try
+            using (var session = OpenSession())
             {
+                count = 0;
+                var query = session.Query<T>();
+
                 count = query.Count();
-            }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            if (count > 0)
-            {
-                query = query.Skip((page - 1) * size).Take(size);
-
-                try
+                if (count > 0)
                 {
-                    ls = query.ToList();
+                    query = query.Skip((page - 1) * size).Take(size);
+
+                    return query.ToList();
                 }
-                catch (Exception e)
+                else
                 {
-                    session.Close();
-                    throw e;
+                    return new List<T>();
                 }
             }
-
-            session.Close();
-
-            return ls;
         }
 
         /// <summary>
@@ -313,48 +246,31 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryPaging<TKey>(int page, int size, out int count, Expression<Func<T, TKey>> keySelector, bool asc)
         {
-            IList<T> ls = new List<T>();
-
-            count = 0;
-            var session = OpenSession();
-            var query = session.Query<T>();
-
-            try
+            using (var session = OpenSession())
             {
+                count = 0;
+                var query = session.Query<T>();
+
                 count = query.Count();
-            }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            if (count > 0)
-            {
-                if (asc)
+                if (count > 0)
                 {
-                    query = query.OrderBy(keySelector);
+                    if (asc)
+                    {
+                        query = query.OrderBy(keySelector);
+                    }
+                    else
+                    {
+                        query = query.OrderByDescending(keySelector);
+                    }
+                    query = query.Skip((page - 1) * size).Take(size);
+
+                    return query.ToList();
                 }
                 else
                 {
-                    query = query.OrderByDescending(keySelector);
-                }
-                query = query.Skip((page - 1) * size).Take(size);
-
-                try
-                {
-                    ls = query.ToList();
-                }
-                catch (Exception e)
-                {
-                    session.Close();
-                    throw e;
+                    return new List<T>();
                 }
             }
-
-            session.Close();
-
-            return ls;
         }
 
         /// <summary>
@@ -367,41 +283,24 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryPaging(int page, int size, out int count, Expression<Func<T, bool>> where)
         {
-            IList<T> ls = new List<T>();
-
-            count = 0;
-            var session = OpenSession();
-            var query = session.Query<T>();
-            query = query.Where(where);
-
-            try
+            using (var session = OpenSession())
             {
+                count = 0;
+                var query = session.Query<T>();
+                query = query.Where(where);
+
                 count = query.Count();
-            }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            if (count > 0)
-            {
-                query = query.Skip((page - 1) * size).Take(size);
-
-                try
+                if (count > 0)
                 {
-                    ls = query.ToList();
+                    query = query.Skip((page - 1) * size).Take(size);
+
+                    return query.ToList();
                 }
-                catch (Exception e)
+                else
                 {
-                    session.Close();
-                    throw e;
+                    return new List<T>();
                 }
             }
-
-            session.Close();
-
-            return ls;
         }
 
         /// <summary>
@@ -414,44 +313,27 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryPaging(int page, int size, out int count, IList<Expression<Func<T, bool>>> lsWhere)
         {
-            IList<T> ls = new List<T>();
-
-            count = 0;
-            var session = OpenSession();
-            var query = session.Query<T>();
-            foreach (var item in lsWhere)
+            using (var session = OpenSession())
             {
-                query = query.Where(item);
-            }
+                count = 0;
+                var query = session.Query<T>();
+                foreach (var item in lsWhere)
+                {
+                    query = query.Where(item);
+                }
 
-            try
-            {
                 count = query.Count();
-            }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            if (count > 0)
-            {
-                query = query.Skip((page - 1) * size).Take(size);
-
-                try
+                if (count > 0)
                 {
-                    ls = query.ToList();
+                    query = query.Skip((page - 1) * size).Take(size);
+
+                    return query.ToList();
                 }
-                catch (Exception e)
+                else
                 {
-                    session.Close();
-                    throw e;
+                    return new List<T>();
                 }
             }
-
-            session.Close();
-
-            return ls;
         }
 
         /// <summary>
@@ -467,52 +349,35 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryPaging<TKey>(int page, int size, out int count, IList<Expression<Func<T, bool>>> lsWhere, Expression<Func<T, TKey>> keySelector, bool asc)
         {
-            IList<T> ls = new List<T>();
-
-            count = 0;
-            var session = OpenSession();
-            var query = session.Query<T>();
-            foreach (var item in lsWhere)
+            using (var session = OpenSession())
             {
-                query = query.Where(item);
-            }
-
-            try
-            {
-                count = query.Count();
-            }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            if (count > 0)
-            {
-                if (asc)
+                count = 0;
+                var query = session.Query<T>();
+                foreach (var item in lsWhere)
                 {
-                    query = query.OrderBy(keySelector);
+                    query = query.Where(item);
+                }
+
+                count = query.Count();
+                if (count > 0)
+                {
+                    if (asc)
+                    {
+                        query = query.OrderBy(keySelector);
+                    }
+                    else
+                    {
+                        query = query.OrderByDescending(keySelector);
+                    }
+                    query = query.Skip((page - 1) * size).Take(size);
+
+                    return query.ToList();
                 }
                 else
                 {
-                    query = query.OrderByDescending(keySelector);
-                }
-                query = query.Skip((page - 1) * size).Take(size);
-
-                try
-                {
-                    ls = query.ToList();
-                }
-                catch (Exception e)
-                {
-                    session.Close();
-                    throw e;
+                    return new List<T>();
                 }
             }
-
-            session.Close();
-
-            return ls;
         }
 
         /// <summary>
@@ -528,49 +393,32 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<T> QueryPaging<TKey>(int page, int size, out int count, Expression<Func<T, bool>> where, Expression<Func<T, TKey>> keySelector, bool asc)
         {
-            IList<T> ls = new List<T>();
-
-            count = 0;
-            var session = OpenSession();
-            var query = session.Query<T>();
-            query = query.Where(where);
-
-            try
+            using (var session = OpenSession())
             {
+                count = 0;
+                var query = session.Query<T>();
+                query = query.Where(where);
+
                 count = query.Count();
-            }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            if (count > 0)
-            {
-                if (asc)
+                if (count > 0)
                 {
-                    query = query.OrderBy(keySelector);
+                    if (asc)
+                    {
+                        query = query.OrderBy(keySelector);
+                    }
+                    else
+                    {
+                        query = query.OrderByDescending(keySelector);
+                    }
+                    query = query.Skip((page - 1) * size).Take(size);
+
+                    return query.ToList();
                 }
                 else
                 {
-                    query = query.OrderByDescending(keySelector);
-                }
-                query = query.Skip((page - 1) * size).Take(size);
-
-                try
-                {
-                    ls = query.ToList();
-                }
-                catch (Exception e)
-                {
-                    session.Close();
-                    throw e;
+                    return new List<T>();
                 }
             }
-
-            session.Close();
-
-            return ls;
         }
         #endregion
         #endregion
@@ -586,18 +434,11 @@ namespace NHibernateDemo.Repository
         {
             object obj = new object();
 
-            var session = OpenSession();
-            try
+            using (var session = OpenSession())
             {
                 obj = session.Save(entity);
+                session.Flush();
             }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            session.Close();
 
             return obj;
         }
@@ -609,28 +450,30 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public IList<object> Add(IList<T> entities)
         {
-            IList<object> ls = new List<object>();
-
-            var session = OpenSession();
-            using (ITransaction transaction = session.BeginTransaction())
+            using (var session = OpenSession())
             {
-                try
-                {
-                    foreach (var item in entities)
-                    {
-                        object obj = session.Save(item);
-                        ls.Add(obj);
-                    }
-                    transaction.Commit();
-                }
-                catch (HibernateException)
-                {
-                    transaction.Rollback();
-                    throw;
-                }
-            }
+                IList<object> ls = new List<object>();
 
-            return ls;
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var item in entities)
+                        {
+                            object obj = session.Save(item);
+                            ls.Add(obj);
+                        }
+                        transaction.Commit();
+                    }
+                    catch (HibernateException)
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+
+                return ls;
+            }
         }
         #endregion
 
@@ -643,19 +486,11 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public void Update(T entity)
         {
-            var session = OpenSession();
-
-            try
+            using (var session = OpenSession())
             {
                 session.SaveOrUpdate(entity);
+                session.Flush();
             }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
-
-            session.Close();
         }
 
         /// <summary>
@@ -665,25 +500,25 @@ namespace NHibernateDemo.Repository
         /// <returns></returns>
         public void Update(IList<T> entities)
         {
-            var session = OpenSession();
-            using (ITransaction transaction = session.BeginTransaction())
+            using (var session = OpenSession())
             {
-                try
+                using (ITransaction transaction = session.BeginTransaction())
                 {
-                    foreach (var item in entities)
+                    try
                     {
-                        session.SaveOrUpdate(item);
+                        foreach (var item in entities)
+                        {
+                            session.SaveOrUpdate(item);
+                        }
+                        transaction.Commit();
                     }
-                    transaction.Commit();
-                }
-                catch (HibernateException e)
-                {
-                    transaction.Rollback();
-                    throw e;
+                    catch (HibernateException e)
+                    {
+                        transaction.Rollback();
+                        throw e;
+                    }
                 }
             }
-
-            session.Close();
         }
         #endregion
 
@@ -695,19 +530,38 @@ namespace NHibernateDemo.Repository
         /// <param name="entity"></param>
         public void Delete(T entity)
         {
-            var session = OpenSession();
-
-            try
+            using (var session = OpenSession())
             {
                 session.Delete(entity);
+                session.Flush();
             }
-            catch (Exception e)
-            {
-                session.Close();
-                throw e;
-            }
+        }
 
-            session.Close();
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="entities"></param>
+        public void Delete(IEnumerable<T> entities)
+        {
+            using (var session = OpenSession())
+            {
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    try
+                    {
+                        foreach (var item in entities)
+                        {
+                            session.Delete(item);
+                        }
+                        transaction.Commit();
+                    }
+                    catch (HibernateException e)
+                    {
+                        transaction.Rollback();
+                        throw e;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -716,25 +570,51 @@ namespace NHibernateDemo.Repository
         /// <param name="key"></param>
         public void Delete(object key)
         {
-            var session = OpenSession();
-
-            try
+            using (var session = OpenSession())
             {
-                T t = session.Get<T>(key);
-                if (t != null)
+                var entity = session.Get<T>(key);
+                if (entity != null)
                 {
-                    session.Delete(t);
+                    session.Delete(entity);
+                    session.Flush();
                 }
-
-                session.Flush();
             }
-            catch (Exception e)
+        }
+
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="keys"></param>
+        public void Delete(IEnumerable<object> keys)
+        {
+            using (var session = OpenSession())
             {
-                session.Close();
-                throw e;
-            }
+                using (ITransaction transaction = session.BeginTransaction())
+                {
+                    IList<T> ls = new List<T>();
 
-            session.Close();
+                    try
+                    {
+                        foreach (var item in keys)
+                        {
+                            var entity = session.Get<T>(item);
+                            ls.Add(entity);
+                        }
+
+                        foreach (var item in ls)
+                        {
+                            session.Delete(item);
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (HibernateException e)
+                    {
+                        transaction.Rollback();
+                        throw e;
+                    }
+                }
+            }
         }
         #endregion
     }

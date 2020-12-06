@@ -25,9 +25,29 @@ namespace NHibernateDemo.WinForm1.Service
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public T Query(object id)
+        public T QuerySingle(object id)
         {
-            return Repository.Query(id);
+            return Repository.QuerySingle(id);
+        }
+
+        /// <summary>
+        /// Query Single
+        /// </summary>
+        /// <param name="where"></param>
+        /// <returns></returns>
+        public T QuerySingle(Expression<Func<T, bool>> where)
+        {
+            return Repository.QuerySingle(where);
+        }
+
+        /// <summary>
+        /// Query Single
+        /// </summary>
+        /// <param name="wheres"></param>
+        /// <returns></returns>
+        public T QuerySingle(IEnumerable<Expression<Func<T, bool>>> wheres)
+        {
+            return Repository.QuerySingle(wheres);
         }
         #endregion
 
@@ -246,10 +266,28 @@ namespace NHibernateDemo.WinForm1.Service
         /// <summary>
         /// Delete
         /// </summary>
+        /// <param name="entities"></param>
+        public void Delete(IEnumerable<T> entities)
+        {
+            Repository.Delete(entities);
+        }
+
+        /// <summary>
+        /// Delete
+        /// </summary>
         /// <param name="key"></param>
         public void Delete(object key)
         {
             Repository.Delete(key);
+        }
+
+        /// <summary>
+        /// Delete
+        /// </summary>
+        /// <param name="keys"></param>
+        public void Delete(IEnumerable<object> keys)
+        {
+            Repository.Delete(keys);
         }
         #endregion
     }

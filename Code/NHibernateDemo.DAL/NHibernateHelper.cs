@@ -16,7 +16,7 @@ namespace NHibernateDemo.DAL
         #region Property
         public static ISessionFactory SessionFactory { get; private set; } = null;
 
-        public static bool EnableSql { get; set; } = true;
+        public static bool EnableSqlLog { get; set; } = true;
 
         public static string Path { get; set; } = "";
 
@@ -32,6 +32,7 @@ namespace NHibernateDemo.DAL
         #endregion
 
 
+        #region Method
         /// <summary>
         /// Init
         /// </summary>
@@ -54,7 +55,7 @@ namespace NHibernateDemo.DAL
 
             if (SessionFactory != null)
             {
-                if (EnableSql)
+                if (EnableSqlLog)
                 {
                     Interceptors.Add(new SqlInterceptor());
                 }
@@ -85,5 +86,6 @@ namespace NHibernateDemo.DAL
         {
             Interceptors.Add(interceptor);
         }
+        #endregion
     }
 }
